@@ -1,0 +1,98 @@
+/* Contact.css */
+.contact-container {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+    padding: 50px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height of the parent div */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Position relative for absolute children */
+}
+.tooltip {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    top: 100%; /* Position it below the textarea */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px; /* Space between textarea and tooltip */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-size: 14px; /* Font size for the tooltip */
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+}
+.contact-form {
+    background-color: white;
+    border-radius: 20px; /* More rounded corners for a modern look */
+    padding: 40px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2); /* Deeper shadow for a stronger 3D effect */
+    width: 400px; /* Fixed width for the contact form */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    position: relative; /* Position relative for pseudo-elements */
+}
+
+.contact-form:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+h1 {
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+input, textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 10px; /* Padding for inputs */
+    margin-bottom: 15px; /* Space between inputs */
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+input:focus, textarea:focus {
+    outline: none; /* Remove outline */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on focus */
+}
+
+button {
+    background: linear-gradient(90deg, #6a0dad, #00c6ff); /* Gradient background for button */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and transform */
+}
+
+button:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    background: linear-gradient(90deg, #00c6ff, #6a0dad); /* Reverse gradient on hover */
+}
+
+/* Add a floating effect */
+.contact-form::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    filter: blur(20px);
+    z-index: -1;
+    animation: float 6s ease-in-out infinite; /* Floating animation */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translatey(0);
+    }
+    50% {
+        transform: translatey(-10px);
+    }
+}

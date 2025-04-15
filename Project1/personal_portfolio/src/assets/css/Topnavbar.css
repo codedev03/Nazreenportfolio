@@ -1,0 +1,111 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hide sidebar off-screen */
+    width: 250px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 1000; /* Ensure it is above other content */
+    padding: 20px;
+}
+
+.sidebar.open {
+    left: 0; /* Show sidebar */
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between links */
+}
+
+.sidebar a {
+    color: yellow;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Add transition for text-shadow */
+    position: relative;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    color: #ebdf07; /* A slightly darker shade of cyan for hover */
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; /* Increase the glow effect */
+}
+
+.sidebar a.active {
+    color: rgb(255, 77, 0); /* Keep the glowing text color */
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; /* Keep the glow effect */
+    font-weight: bold; /* Make the text bold */
+}
+
+.sidebar a.active::after {
+    content: ''; /* Create a pseudo-element for the underline */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px; /* Position it below the text */
+    height: 4px; /* Height of the underline */
+    background-color: yellow; /* Color of the underline */
+    border-radius: 2px; /* Rounded corners for the underline */
+}
+
+.sidebar a.active {
+    padding: 5px; /* Add padding for the box effect */
+    border: 2px solid white; /* White box around the active link */
+    border-radius: 5px; /* Rounded corners for the box */
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #00ffff;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    color: #00ffff;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it is above the sidebar */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Add transition for text-shadow */
+}
+.menu-icon:hover {
+    color: #00cccc; /* A slightly darker shade of cyan for hover */
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; /* Increase the glow effect */
+}
+
+/* Ensure the main content is not pushed down */
+.main-content {
+    margin-left: 0; /* Default margin */
+    transition: margin-left 0.3s ease; /* Smooth transition */
+}
+
+.sidebar.open + .main-content {
+    margin-left: 250px; /* Shift content to the right when sidebar is open */
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: #00ffff; /* Glowing text color */
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px; /* Add some space above the button */
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: #ff7e5f; /* Change color on hover */
+    text-shadow: 0 0 10px #00ffff; /* Glowing effect */
+}

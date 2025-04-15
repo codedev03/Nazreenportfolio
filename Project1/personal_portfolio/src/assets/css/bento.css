@@ -1,0 +1,45 @@
+/* bento.css */
+.bento-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #f0f0f0; /* Background color for the grid */
+}
+
+.contact-container {
+    flex: 1; /* Take up half of the viewport height */
+    display: flex;
+    justify-content: center; /* Center the contact form */
+    align-items: center; /* Center vertically */
+    padding: 20px; /* Padding for the contact section */
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+}
+
+.skills-container {
+    flex: 1; /* Take up half of the viewport height */
+    display: flex;
+    flex-direction: column; /* Stack skills vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 20px; /* Padding for the skills section */
+    background-color: #282c34; /* Dark background for contrast */
+    color: white; /* Text color */
+}
+
+.skill {
+    width: 100%; /* Full width for each skill */
+    margin-bottom: 20px; /* Space between skills */
+}
+
+.progress-bar {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background for the progress bar */
+    border-radius: 5px;
+    height: 20px; /* Height of the progress bar */
+    overflow: hidden; /* Hide overflow for the inner progress */
+}
+
+.progress {
+    height: 100%; /* Full height for the progress */
+    background: linear-gradient(90deg, #6a0dad, #00c6ff); /* Gradient for the progress */
+    transition: width 1.5s ease-in-out; /* Animate width change */
+    border-radius: 5px;
+}

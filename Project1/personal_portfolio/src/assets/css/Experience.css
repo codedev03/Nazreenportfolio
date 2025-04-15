@@ -1,0 +1,178 @@
+.experience-container {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  position: relative;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  animation: twinkle 1s infinite alternate; /* Twinkle effect */
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #007bff;
+  margin: 10px auto 0;
+}
+
+.experience-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.experience-card {
+  border: 1px solid blue;
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0; /* Start hidden for animation */
+  transform: translateY(10px); /* Start slightly below */
+}
+
+.experience-card.show {
+  opacity: 1; /* Fade in when visible */
+  transform: translateY(0); /* Move to original position */
+}
+
+.experience-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 255, 255, 0.7);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.experience-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.experience-duration {
+  font-size: 0.95rem;
+  color: #777;
+}
+
+.experience-company {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.experience-description {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Blob Styles */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: float 6s ease-in-out infinite; /* Floating animation */
+  z-index: 0; /* Ensure blobs are behind cards */
+}
+
+.blob1 {
+  background: rgba(255, 0, 150, 0.5); /* Pink color */
+  width: 200px;
+  height: 200px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.blob2 {
+  background: rgba(0, 204, 255, 0.5); /* Blue color */
+  width: 300px;
+  height: 300px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+ }
+
+.blob3 {
+  background: rgba(0, 255, 85, 0.5); /* Green color */
+  width: 250px;
+  height: 250px;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-container {
+    padding: 20px; /* Further reduce padding on smaller screens */
+  }
+
+  .section-title {
+    font-size: 2.5rem; /* Adjust title size */
+    margin-bottom: 5px; /* Adjust margin */
+  }
+
+  .experience-cards {
+    gap: 15px; /* Adjust gap for smaller screens */
+  }
+}

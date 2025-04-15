@@ -1,0 +1,37 @@
+.curvy-lines {
+    position: absolute;
+    top: 50%; /* Center the lines vertically */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks to pass through */
+    overflow: hidden; /* Prevent overflow */
+    z-index: 0; /* Ensure it's behind other elements */
+}
+
+.line {
+    position: absolute;
+    width: 200%; /* Make the line longer than the viewport */
+    height: 1px; /* Adjust thickness for a more pronounced effect */
+    background: rgba(255, 255, 255, 0.5); /* Light color for the lines */
+    border-radius: 20px; /* More rounded edges */
+    animation: wavy 3s ease-in-out infinite; /* Animation for the wavy effect */
+}
+
+@keyframes wavy {
+    0% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(-25%) translateY(-15px) rotate(5deg);
+    }
+    50% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateX(25%) translateY(-15px) rotate(-5deg);
+    }
+    100% {
+        transform: translateX(50%) translateY(0) rotate(0deg);
+    }
+}

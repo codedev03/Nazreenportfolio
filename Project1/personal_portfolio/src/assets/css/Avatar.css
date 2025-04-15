@@ -1,0 +1,73 @@
+.star {
+  width: 10px; /* Adjust size as needed */
+  height: 10px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(128, 0, 128, 0.5)); /* Gradient for the star */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Diamond shape */
+  position: absolute;
+  animation: twinkle 1.5s infinite; /* Ensure animation is applied */
+  transition: box-shadow 0.3s ease;
+}
+
+.star:hover {
+  background: rgba(128, 0, 128, 1); /* Change color to purple on hover */
+  box-shadow: 0 0 20px rgba(128, 0, 128, 1), 0 0 30px rgba(128, 0, 128, 0.5); /* Glowing effect */
+}
+
+.stars-container {
+  position: absolute; /* Position absolute for stars */
+  top: 0; /* Adjust as needed */
+  left: 0; /* Adjust as needed */
+  width: 100%; /* Full width of the card */
+  height: 100%; /* Full height of the card */
+  overflow: hidden; /* Prevent overflow */
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+  @keyframes moveTowards {
+    0% {
+      transform: translateY(0) translateZ(0) scale(1); /* Start at original size */
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) translateZ(-1000px) scale(0.5); /* Move towards the viewer and shrink */
+      opacity: 0; /* Fade out */
+    }
+  }
+
+  @keyframes twinkle {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+  
+.profile-image:hover {
+    transform: scale(1.1); /* Zoom in effect */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 1); /* Enhanced glow on hover */
+}
+
+  /* Custom cursor for magic wand */
+.magic-cursor {
+    cursor: url('../images/magic-wand1.svg'), auto;
+  }
+  
+  /* Zoom-in effect for cards */
+  .card {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
+    border-radius: 15px; /* Rounded edges */
+    position: relative; /* Position relative for absolute children */
+    overflow: hidden; /* Prevent overflow of shadow */
+}
+.card:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3); /* White shadow gradient */
+}

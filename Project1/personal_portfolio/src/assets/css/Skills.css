@@ -1,0 +1,133 @@
+/* Skills.css */
+.skills-container {
+  background-color: #282c34; /* Dark background for contrast */
+  padding: 20px; /* Padding for the container */
+  color: white;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height of the parent div */
+  position: relative; /* Position relative for absolute positioning of stars */
+  overflow: hidden; /* Hide overflow for stars */
+}
+
+.star {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  animation: twinkle 1s infinite alternate; /* Twinkle effect */
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+.skills-cards {
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: space-between; /* Space out the cards */
+  margin-top: 20px;
+}
+
+.skills-card {
+  flex: 1; /* Each card takes equal space */
+  background: linear-gradient(145deg, #3a3f47, #2c3036); /* Gradient background for skills card */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the card */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  margin-right: 20px; /* Space between cards */
+}
+
+.icons-card {
+  flex: 1; /* Each card takes equal space */
+  min-width: 300px; /* Set a minimum width for the icons card */
+  background: linear-gradient(145deg, #1c1f24, #2c3036); /* Dark gradient background for icons card */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the card */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  position: relative; /* Position relative for absolute positioning of icons */
+  overflow: hidden; /* Hide overflow for floating icons */
+}
+
+.skills-grid {
+  display: flex; /* Use flexbox for vertical layout */
+  justify-content: space-between; /* Space out the items */
+  margin-top: 20px;
+}
+
+.skills-column {
+  flex: 1; /* Each column takes equal space */
+  margin-right: 10px; /* Margin between columns */
+}
+
+.skill {
+  background: linear-gradient(145deg, #3a3f47, #2c3036); /* Gradient background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); /* 3D shadow effect */
+  margin-bottom: 10px; /* Space between skills */
+  padding: 10px; /* Padding inside each skill box */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.skill:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3), -10px -10px 20px rgba(255, 255, 255, 0.1); /* Enhanced shadow on hover */
+}
+
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px; /* Space between label and progress bar */
+}
+
+.progress-bar {
+  background-color: rgba(255, 255, 255, 0.2); /* Light background for the progress bar */
+  border-radius: 5px;
+  height: 15px; /* Height of the progress bar */
+  overflow: hidden; /* Hide overflow for the inner progress */
+}
+
+.progress {
+  height: 100%; /* Full height for the progress */
+  background: linear-gradient(90deg, #6a0dad, #00c6ff); /* Gradient for the progress */
+  transition: width 1.5s ease-in-out; /* Animate width change */
+  border-radius: 5px }
+
+/* Skills.css */
+.icons-container {
+  display: flex; /* Use flexbox for icons layout */
+  flex-wrap: wrap; /* Allow icons to wrap */
+  justify-content: space-around; /* Distribute icons evenly */
+  align-items: center; /* Center icons vertically */
+  height: 100%; /* Full height of the icons card */
+}
+
+.skill-icon {
+  margin: 10px; /* Space between icons */
+  font-size: 36px; /* Medium size for the icons */
+  color: rgba(255, 255, 255, 0.8); /* White-grey tone for icons */
+  animation: float 3s ease-in-out infinite; /* Floating animation */
+  flex: 0 1 auto; /* Allow icons to grow and shrink */
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -20px); /* Move right and up */
+  }
+  50% {
+    transform: translate(-20px, 20px); /* Move left and down */
+  }
+  75% {
+    transform: translate(20px, 10px); /* Move right and slightly down */
+  }
+  100% {
+    transform: translate(0, 0); /* Return to original position */
+  }
+}

@@ -1,0 +1,34 @@
+/* theme.css */
+
+/* Light Theme */
+body.light {
+  background-color: white; /* Background color for light theme */
+  color: black; /* Text color for light theme */
+}
+
+.sidebar.light {
+  background-color: rgba(255, 255, 255, 0.9); /* Sidebar background for light theme */
+  color: black; /* Text color for sidebar in light theme */
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: black; /* Background color for dark theme */
+  color: white; /* Text color for dark theme */
+}
+
+.sidebar.dark {
+  background-color: rgba(0, 0, 0, 0.9); /* Sidebar background for dark theme */
+  color: white; /* Text color for sidebar in dark theme */
+}
+
+/* Additional styles for links and buttons */
+a {
+  color: inherit; /* Inherit color from parent */
+}
+
+.theme-toggle {
+  background: none; /* Remove default button background */
+  border: none; /* Remove default button border */
+  cursor: pointer; /* Change cursor to pointer */
+}

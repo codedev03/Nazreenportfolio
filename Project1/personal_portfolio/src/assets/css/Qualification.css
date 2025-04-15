@@ -1,0 +1,90 @@
+/* Qualification.css */
+.qualification-container {
+  background: linear-gradient(135deg, #eaf2ff, #f7f8fc);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.5s ease;
+}
+
+.qualification-main-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-align: center;
+  animation: fadeInDown 0.8s ease forwards;
+}
+
+.qualification-capsules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.5s ease; /* Transition for opacity */
+}
+
+.qualification-capsules.fade-in {
+  opacity: 1; /* Fade in when visible */
+}
+
+.qualification-capsule {
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  color: #222;
+  padding: 18px 28px;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.5);
+  text-align: center;
+  min-width: 280px;
+  transform: translateY(20px); /* Start below */
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  opacity: 0; /* Start hidden */
+}
+
+.qualification-capsule.show {
+  transform: translateY(0); /* Move to original position */
+  opacity: 1; /* Fade in */
+}
+
+.qualification-capsule:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 255, 255, 0.7);
+}
+
+.qualification-capsule h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.qualification-capsule p {
+  margin-top: 6px;
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

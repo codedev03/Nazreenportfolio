@@ -1,0 +1,144 @@
+/* Floating 3D Shapes */
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.shape {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: float 10s infinite ease-in-out;
+}
+
+.cube {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.sphere {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  top: 50%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+.pyramid {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid rgba(255, 255, 255, 0.1);
+  top: 70%;
+  left: 70%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+/* Glowing Button */
+.glowing-btn {
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glowing-btn:hover {
+  background: #00ffff;
+  color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section .container {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+  }
+}
+
+.typewriter {
+  border-right: 2px solid #00ffff; /* Cursor effect */
+  animation: blink 0.7s infinite; /* Blinking cursor */
+}
+
+@keyframes blink {
+  0%, 100% {
+      border-color: transparent;
+  }
+  50% {
+      border-color: #00ffff;
+  }
+}
+
+/* Avatar Hover Effect */
+.avatar-container:hover {
+  transform: scale(1.1); /* Scale up the avatar on hover */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+/* Description Highlight */
+.highlight {
+  color: #00ffff; /* Highlight color */
+  font-weight: bold; /* Make highlighted text bold */
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Optional glow effect */
+}
+
+/* Glassmorphic Effect */
+.description {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  padding: 1rem; /* Padding for the description */
+  border-radius: 10px; /* Rounded corners */
+  position: relative; /* Position for potential additional effects */
+  overflow: hidden; /* Hide overflow for the blob */
+}
+
+/* Fluid Blob Animation */
+.blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%; /* Width of the blob */
+  height: 300%; /* Height of the blob */
+  background: rgba(0, 255, 255, 0.2); /* Blob color */
+  border-radius: 50%; /* Circular blob */
+  animation: wave 8s infinite; /* Animation for the blob */
+  transform: translate(-50%, -50%) scale(0.5); /* Center the blob and scale down */
+  z-index: -1; /* Send the blob behind the text */
+}
+
+@keyframes wave {
+  0% {
+      transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+      transform: translate(-50%, -50%) scale(0.6);
+  }
+  100% {
+      transform: translate(-50%, -50%) scale(0.5);
+  }
+}
