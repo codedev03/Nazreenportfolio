@@ -1,14 +1,17 @@
-/* Contact.css */
 .contact-container {
-    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+    background: linear-gradient(to right, #1a1a1a, #333) !important; /* Dark gradient background */
     padding: 50px;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height of the parent div */
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; /* Position relative for absolute children */
+    position: relative;
+    overflow: hidden;
 }
+
+
+
 .tooltip {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.9);
@@ -26,17 +29,19 @@
     transition: opacity 0.3s ease; /* Smooth transition for visibility */
 }
 .contact-form {
-    background-color: white;
-    border-radius: 20px; /* More rounded corners for a modern look */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 20px;
     padding: 40px;
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2); /* Deeper shadow for a stronger 3D effect */
-    width: 400px; /* Fixed width for the contact form */
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
-    position: relative; /* Position relative for pseudo-elements */
+    box-shadow: 0px 20px 40px rgba(255, 255, 255, 0.2); /* Darker shadow */
+    width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Position relative for the form */
+    z-index: 1; /* Place it above the background */
 }
 
 .contact-form:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px) scale(1.02); /* Lift effect and slight scale on hover */
+    box-shadow: 0px 30px 60px rgba(255, 255, 255, 0.3); /* Stronger shadow on hover */
 }
 
 h1 {
@@ -44,22 +49,24 @@ h1 {
 }
 
 input, textarea {
+    background-color: rgba(255, 255, 255, 0.2); /* Lighter input background */
+    color: white; /* White text color */
     width: 100%; /* Full width for inputs */
     padding: 10px; /* Padding for inputs */
     margin-bottom: 15px; /* Space between inputs */
     border: none; /* Remove default border */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow */
 }
 
 input:focus, textarea:focus {
     outline: none; /* Remove outline */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Shadow on focus */
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5); /* Shadow on focus */
 }
 
 button {
-    background: linear-gradient(90deg, #6a0dad, #00c6ff); /* Gradient background for button */
+    background: linear-gradient(90deg, #6a0dad, #00c6ff);
     color: white; /* Text color */
     border: none; /* Remove default border */
     border-radius: 10px; /* Rounded corners */
@@ -69,7 +76,7 @@ button {
 }
 
 button:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px) scale(1.05); /* Lift effect on hover */
     background: linear-gradient(90deg, #00c6ff, #6a0dad); /* Reverse gradient on hover */
 }
 
@@ -86,6 +93,18 @@ button:hover {
     filter: blur(20px);
     z-index: -1;
     animation: float 6s ease-in-out infinite; /* Floating animation */
+}
+
+.animated-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interaction with icons */
+}
+
+.animated-icons div:hover {
+    transform: scale(1.1); /* Scale effect on hover for icons */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
 }
 
 @keyframes float {

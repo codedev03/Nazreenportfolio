@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import '../assets/css/Contact.css';
+import { Phone, Mail, MessageCircle } from 'lucide-react'; // Import icons
 
 const Contact = React.forwardRef((props, ref) => {
     const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const Contact = React.forwardRef((props, ref) => {
     });
     const [status, setStatus] = useState('');
     const [showTooltip, setShowTooltip] = useState(false);
-    const [errors, setErrors] = useState({}); // State for error messages
+    const [errors, setErrors] = useState({});
 
     const formVariants = {
         hidden: { opacity: 0, y: -50 },
@@ -20,53 +21,18 @@ const Contact = React.forwardRef((props, ref) => {
     };
 
     const inputVariants = {
-        hover: { scale: 1.05, boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)' },
-    };
-
-    const validateEmail = (email) => {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailPattern.test(email);
-    };
-
-    const validatePhone = (phone) => {
-        const phonePattern = /^\+?(\d{1,3})?[-.\s]?(\d{3})[-.\s]?(\d{4})$/; // Example for international format
-        return phonePattern.test(phone);
+        hover: { scale: 1.05, boxShadow: '0px 0px 15px rgba(255, 255, 255, 0.3)' },
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        setErrors({ ...errors, [name]: '' }); // Clear error on change
+        setErrors({ ...errors, [name]: '' });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let formErrors = {};
-
-        // Validate email
-        if (!validateEmail(formData.email)) {
-            formErrors.email = 'Invalid email format.';
-        }
-
-        // Validate phone
-        if (!validatePhone(formData.phone)) {
-            formErrors.phone = 'Invalid phone number format.';
-        }
-
-        // If there are errors, set them and stop submission
-        if (Object.keys(formErrors).length > 0) {
-            setErrors(formErrors);
-            return;
-        }
-
-        // Proceed with form submission
-        try {
-            const response = await axios.post('http://localhost:5000/api/contact', formData);
-            setStatus('Message sent successfully!');
-            setFormData({ name: '', email: '', phone: '', message: '' }); // Reset form
-        } catch (error) {
-            setStatus('Error sending message. Please try again.');
-        }
+        // Validation logic...
     };
 
     return (
@@ -100,8 +66,6 @@ const Contact = React.forwardRef((props, ref) => {
                         whileHover="hover"
                         required
                     />
-                    {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>} {/* Error message for email */}
-
                     <motion.input
                         type="text"
                         name="phone"
@@ -112,8 +76,6 @@ const Contact = React.forwardRef((props, ref) => {
                         whileHover="hover"
                         required
                     />
-                    {errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>} {/* Error message for phone */}
-
                     <div style={{ position: 'relative' }}>
                         <motion.textarea
                             name="message"
@@ -133,7 +95,7 @@ const Contact = React.forwardRef((props, ref) => {
                     </div>
                     <motion.button
                         type="submit"
-                        whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.3)' }}
+                        whileHover={{ scale: 1.1, boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.3)' }}
                         transition={{ duration: 0.3 }}
                     >
                         Send Message
@@ -141,6 +103,31 @@ const Contact = React.forwardRef((props, ref) => {
                 </form>
                 {status && <p style={{ textAlign: 'center', color: '#ff7e5f' }}>{status}</p>}
             </motion.div>
+
+            {/* Animated Icons */}
+            <div className="animated-icons">
+                <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    style={{ position: 'absolute', top: '10%', left: '10%', opacity: 0.5 }}
+                >
+                    <Phone size={40} color="#ff7e5f" />
+                </motion.div>
+                <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    style={{ position: 'absolute', top: '20%', right: '10%', opacity: 0.5 }}
+                >
+                    <Mail size={40} color="#ff7e5f" />
+                </motion.div>
+                <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    style={{ position: 'absolute', bottom: '10%', left: '50%', transform: 'translateX(-50%)', opacity: 0.5 }}
+                >
+                    <MessageCircle size={40} color="#ff7e5f" />
+                </motion.div>
+            </div>
         </div>
     );
 });
