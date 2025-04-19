@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Root route for testing
+app.get('/', (req, res) => {
+    res.send('Welcome to the API!'); // Simple message for the root route
+});
+
 // Endpoint to handle form submissions
 app.post('/api/contact', (req, res) => {
     console.log('Received data:', req.body);

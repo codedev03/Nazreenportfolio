@@ -39,7 +39,7 @@ const Contact = React.forwardRef((props, ref) => {
             return;
         }
     
-        const apiUrl = process.env.VITE_API_URL; // Get the API URL from the environment variable
+        const apiUrl = import.meta.env.VITE_API_URL; // Get the API URL from the environment variable
     
         try {
             const response = await axios.post(`${apiUrl}/contact`, formData);
