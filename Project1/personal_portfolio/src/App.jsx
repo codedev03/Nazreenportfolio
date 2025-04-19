@@ -8,7 +8,7 @@ import Contact from './pages/Contactus';
 import Skills from './pages/Skills';
 import Qualification from './pages/Qualification';
 import Experience from './pages/Experience';
-import MagicWandCursor from './pages/magicwand';
+import MagicWandCursor from './pages/Magicwand';
 import './assets/css/bento.css'; // Import the new bento CSS file
 
 // ErrorBoundary definition
