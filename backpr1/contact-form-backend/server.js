@@ -7,6 +7,7 @@ require('dotenv').config(); // Load environment variables from .env file
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -20,6 +21,7 @@ app.post('/api/contact', (req, res) => {
     console.log('Received data:', req.body);
     const { name, email, phone, message } = req.body; // Include phone in destructuring
 
+    // Validate required fields
     if (!name || !email || !message) {
         return res.status(400).send('All fields are required.');
     }
@@ -34,21 +36,23 @@ app.post('/api/contact', (req, res) => {
     });
 
     const mailOptions = {
-        from: email,
-        to: process.env.EMAIL_USER, // Use environment variable
+        from: email, // Sender's email
+        to: process.env.EMAIL_USER, // Recipient's email (your email)
         subject: `New message from ${name}`,
         text: `You have received a new message from ${name} (${email}, ${phone}):\n\n${message}`, // Include name, email, and phone in the email body
     };
 
+    // Send email
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);
-            return res.status(500).send(error.toString());
+            return res.status(500).send('Error sending email: ' + error.toString());
         }
         res.status(200).send('Message sent: ' + info.response);
     });
 });
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

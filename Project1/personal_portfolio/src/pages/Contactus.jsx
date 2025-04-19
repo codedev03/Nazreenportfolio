@@ -27,27 +27,30 @@ const Contact = React.forwardRef((props, ref) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        setErrors({ ...errors, [name]: '' });
+        setErrors({ ...errors, [name]: '' }); // Clear error for the field being edited
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        // Basic validation (you can expand this as needed)
+        console.log('Form Data:', formData); // Log the form data
+
+        // Validate required fields
         if (!formData.name || !formData.email || !formData.message) {
             setStatus('Please fill in all required fields.');
             return;
         }
-    
-        const apiUrl = import.meta.env.VITE_API_URL; // Get the API URL from the environment variable
-    
+
+        const apiUrl = import.meta.env.VITE_API_URL; // Ensure this is correct
+        console.log('API URL:', apiUrl); // Log the API URL
+
         try {
             const response = await axios.post(`${apiUrl}/contact`, formData);
-            setStatus('Message sent successfully!'); // Update status on success
-            setFormData({ name: '', email: '', phone: '', message: '' }); // Clear the form
+            setStatus('Message sent successfully!');
+            setFormData({ name: '', email: '', phone: '', message: '' }); // Reset form data
+            setErrors({}); // Clear any previous errors
         } catch (error) {
             console.error('Error sending message:', error);
-            setStatus('Failed to send message. Please try again later.'); // Update status on error
+            setStatus('Failed to send message. Please try again later.');
         }
     };
 
@@ -85,12 +88,11 @@ const Contact = React.forwardRef((props, ref) => {
                     <motion.input
                         type="text"
                         name="phone"
-                        placeholder="Your Phone Number"
+                        placeholder="Your Phone Number (optional)"
                         value={formData.phone}
                         onChange={handleChange}
                         variants={inputVariants}
                         whileHover="hover"
-                        required
                     />
                     <div style={{ position: 'relative' }}>
                         <motion.textarea
@@ -100,7 +102,7 @@ const Contact = React.forwardRef((props, ref) => {
                             value={formData.message}
                             onChange={handleChange}
                             variants={inputVariants}
-                            whileHover="hover"
+                            whileHover ="hover"
                             required
                             onMouseEnter={() => setShowTooltip(true)}
                             onMouseLeave={() => setShowTooltip(false)}
