@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer'); // For sending emails
+require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,14 +23,14 @@ app.post('/api/contact', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Use your email service
         auth: {
-            user: 'nazreenkmmmca@gmail.com', // Your email
-            pass: 'npwz axms zpsk utue', // Your email password
+            user: process.env.EMAIL_USER, // Use environment variable
+            pass: process.env.EMAIL_PASS, // Use environment variable
         },
     });
 
     const mailOptions = {
         from: email,
-        to: 'nazreenkmmmca@gmail.com', // Your email
+        to: process.env.EMAIL_USER, // Use environment variable
         subject: `New message from ${name}`,
         text: `You have received a new message from ${name} (${email}, ${phone}):\n\n${message}`, // Include name, email, and phone in the email body
     };
