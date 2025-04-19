@@ -32,7 +32,23 @@ const Contact = React.forwardRef((props, ref) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Validation logic...
+    
+        // Basic validation (you can expand this as needed)
+        if (!formData.name || !formData.email || !formData.message) {
+            setStatus('Please fill in all required fields.');
+            return;
+        }
+    
+        const apiUrl = process.env.VITE_API_URL; // Get the API URL from the environment variable
+    
+        try {
+            const response = await axios.post(`${apiUrl}/contact`, formData);
+            setStatus('Message sent successfully!'); // Update status on success
+            setFormData({ name: '', email: '', phone: '', message: '' }); // Clear the form
+        } catch (error) {
+            console.error('Error sending message:', error);
+            setStatus('Failed to send message. Please try again later.'); // Update status on error
+        }
     };
 
     return (
