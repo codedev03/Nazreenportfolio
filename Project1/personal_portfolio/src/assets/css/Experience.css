@@ -68,6 +68,7 @@
 .experience-card:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(3px);
 }
 
 .experience-header {

@@ -29,18 +29,7 @@ function Home() {
         <div className="shape pyramid"></div>
       </div>
 
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '4rem',
-          maxWidth: '1200px',
-          zIndex: 1, // Ensure content is above the floating shapes
-        }}
-      >
+      <div className="container">
         {/* Text Section */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -68,6 +57,7 @@ function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
+              style={{ flex: 1 }}
           >
               <div className="blob"></div> {/* Fluid blob background */}
               Hi there, I'm a dedicated <span className="highlight">Python Developer</span> and Software Engineer based in Kochi. 

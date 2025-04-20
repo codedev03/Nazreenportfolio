@@ -27,6 +27,8 @@ const servicesData = [
 
 const Services = () => {
   const { scrollY } = useScroll();
+  const yCard = useTransform(scrollY, [0, 500], [0, -30]); // subtle upward motion
+
   const yBlob1 = useSpring(useTransform(scrollY, [0, 500], [0, 150]), { stiffness: 80, damping: 20 });
   const yBlob2 = useSpring(useTransform(scrollY, [0, 500], [0, -150]), { stiffness: 80, damping: 20 });
 
@@ -46,11 +48,46 @@ const Services = () => {
   };
 
   useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      createStarTrail(x, y);
+    };
+  
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0];
+      if (touch) {
+        const x = touch.clientX;
+        const y = touch.clientY;
+        createStarTrail(x, y);
+      }
+    };
+  
+    const createStarTrail = (x, y) => {
+      setMousePosition({ x, y });
+      const newStars = Array.from({ length: 15 }).map((_, index) => ({
+        id: Date.now() + index,
+        left: x + (Math.random() * 30 - 15) + 'px',
+        top: y + (Math.random() * 30 - 15) + 'px',
+        opacity: Math.random(),
+        size: Math.random() * 5 + 5 + 'px',
+      }));
+      setStars(newStars);
+      setTimeout(() => {
+        setStars([]);
+      }, 700); // clears trail after 0.7s
+      
+    };
+  
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove);
+  
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
+  
 
   return (
     <div
@@ -116,32 +153,40 @@ const Services = () => {
       >
         {servicesData.map((service, index) => (
           <motion.div
-            key={index}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 25px rgba(128, 0, 255, 0.5)",
-            }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            style={{
-              background: "rgba(255, 255, 255, 0.08)",
-              backdropFilter: "blur(14px)",
-              borderRadius: "16px",
-              padding: "20px 18px",
-              width: "220px",
-              color: "white",
-              border: "1px solid rgba(255,255,255,0.12)",
-              textAlign: "center",
-              position: "relative",
-            }}
-          >
-            <div style={{ marginBottom: "15px" }}>{service.icon}</div>
-            <h2 style={{ fontSize: "1.4rem", marginBottom: "10px", color: "#8b5cf6" }}>
-              {service.title}
-            </h2>
-            <p style={{ fontSize: "0.95rem" }}>{service.description}</p>
-          </motion.div>
+          key={index}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0 0 25px rgba(128, 0, 255, 0.5)",
+          }}
+          whileTap={{
+            scale: 1.05,
+            boxShadow: "0 0 25px rgba(128, 0, 255, 0.5)",
+          }}
+          initial={{ opacity: 1, y: 0 }}
+          // whileInView={{ opacity: 1, y: 0 }}
+          // viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+          style={{
+            background: "rgba(255, 255, 255, 0.08)",
+            backdropFilter: "blur(14px)",
+            borderRadius: "16px",
+            padding: "20px 18px",
+            width: "220px",
+            color: "white",
+            border: "1px solid rgba(255,255,255,0.12)",
+            textAlign: "center",
+            position: "relative",
+            cursor: "pointer",
+            y: yCard,
+          }}
+        >
+          <div style={{ marginBottom: "15px" }}>{service.icon}</div>
+          <h2 style={{ fontSize: "1.4rem", marginBottom: "10px", color: "#8b5cf6" }}>
+            {service.title}
+          </h2>
+          <p style={{ fontSize: "0.95rem" }}>{service.description}</p>
+        </motion.div>
+        
         ))}
       </div>
 

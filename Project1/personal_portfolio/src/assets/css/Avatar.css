@@ -13,6 +13,12 @@
   box-shadow: 0 0 20px rgba(128, 0, 128, 1), 0 0 30px rgba(128, 0, 128, 0.5); /* Glowing effect */
 }
 
+.star.touch-active {
+  background: rgba(128, 0, 128, 1);
+  box-shadow: 0 0 20px rgba(128, 0, 128, 1), 0 0 30px rgba(128, 0, 128, 0.5);
+}
+
+
 .stars-container {
   position: absolute; /* Position absolute for stars */
   top: 0; /* Adjust as needed */
@@ -70,4 +76,32 @@
 .card:hover {
   transform: scale(1.05); /* Scale up on hover */
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3); /* White shadow gradient */
+}
+
+@media screen and (max-width: 768px) {
+  .star {
+      width: 5vw; /* Adjust size for smaller screens */
+      height: 5vw; /* Adjust size for smaller screens */
+      animation: twinkle 2s infinite; /* Slower twinkle on smaller screens */
+  }
+
+  .card {
+      width: 90%; /* Make cards take up more width on smaller screens */
+      margin: 0 auto; /* Center the card */
+  }
+
+  .profile-image {
+      width: 80%; /* Adjust profile image size for mobile */
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
 }

@@ -4,6 +4,7 @@ import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
 import profile from '../assets/images/profile.png';
 import '../assets/css/Avatar.css';
 import CurvyLines from './CurvyLines';
+import magicWand from '../assets/images/magic-wand1.svg';
 // --- Stars Component ---
 const AnimatedStars = () => {
   const stars = Array.from({ length: 100 }).map((_, index) => ({
@@ -12,6 +13,22 @@ const AnimatedStars = () => {
     top: Math.random() * 100 + 'vh', // Random vertical position
     animationDuration: Math.random() * 3 + 2 + 's', // Random duration for each star
   }));
+
+  useEffect(() => {
+    const handleTouch = (e) => {
+      const target = e.target;
+      if (target.classList.contains('star')) {
+        target.classList.add('touch-active');
+        setTimeout(() => {
+          target.classList.remove('touch-active');
+        }, 1000); // 1 second glow
+      }
+    };
+    document.addEventListener('touchstart', handleTouch);
+    return () => {
+      document.removeEventListener('touchstart', handleTouch);
+    };
+  }, []);
 
   return (
     <>
@@ -31,6 +48,37 @@ const AnimatedStars = () => {
     </>
   );
 };
+
+// --- SparkleTrail Component ---
+const SparkleTrail = ({ x, y }) => {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setVisible(false), 500); // Sparkle fades in 0.5s
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div
+      className="sparkle"
+      style={{
+        position: 'fixed',
+        left: x,
+        top: y,
+        width: '8px',
+        height: '8px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, #fff 0%, #ff00ff 60%, transparent 100%)',
+        pointerEvents: 'none',
+        zIndex: 9999,
+        animation: 'fadeOut 0.5s ease-out',
+      }}
+    />
+  );
+};
+
 
 // --- AvatarCard Component ---
 const AvatarCard = () => {
@@ -138,23 +186,100 @@ const AvatarCanvas = () => {
 
 // --- Combined Component ---
 const AvatarSection = () => {
+  const sectionRef = useRef();
+
+  const [touchPosition, setTouchPosition] = useState(null);
+  const [trail, setTrail] = useState([]);
+// Mouse sparkle trail
+useEffect(() => {
+  const handleMouseMove = (e) => {
+    if (!sectionRef.current.contains(e.target)) return;
+
+    setTrail((prev) => [
+      ...prev,
+      { x: e.clientX, y: e.clientY, id: Date.now() + Math.random() },
+    ]);
+  };
+
+  window.addEventListener('mousemove', handleMouseMove);
+  return () => window.removeEventListener('mousemove', handleMouseMove);
+}, []);
+useEffect(() => {
+  const cleanup = setInterval(() => {
+    setTrail((prev) => prev.filter((sparkle) => Date.now() - sparkle.id < 500));
+  }, 100);
+
+  return () => clearInterval(cleanup);
+}, []);
+
+
+
+// Touch sparkle trail
+useEffect(() => {
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0];
+    if (!sectionRef.current.contains(e.target)) return;
+
+    const { clientX, clientY } = touch;
+    setTouchPosition({ x: clientX, y: clientY });
+    setTrail((prev) => [
+      ...prev,
+      { x: clientX, y: clientY, id: Date.now() + Math.random() },
+    ]);
+  };
+
+  const handleTouchEnd = () => setTouchPosition(null);
+
+  document.addEventListener('touchmove', handleTouchMove);
+  document.addEventListener('touchend', handleTouchEnd);
+
+  return () => {
+    document.removeEventListener('touchmove', handleTouchMove);
+    document.removeEventListener('touchend', handleTouchEnd);
+  };
+}, []);
+
+
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '2rem',
-      padding: '2rem',
-      flexWrap: 'wrap',
-      backgroundColor: '#020617',
-      minHeight: '100vh',
-      position: 'relative', // Position relative for stars
-      overflow: 'hidden', // Hide overflow for stars
+    <div 
+      ref={sectionRef}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '2rem',
+        padding: '2rem',
+        flexWrap: 'wrap',
+        backgroundColor: '#020617',
+        minHeight: '100vh',
+        position: 'relative', // Position relative for stars
+        overflow: 'hidden', // Hide overflow for stars
     }}>
       <AnimatedStars />
       <CurvyLines />
       <AvatarCard />
       <AvatarCanvas />
+      {touchPosition && (
+  <img
+    src={magicWand}
+    alt="Magic Wand"
+    style={{
+      position: 'fixed',
+      left: touchPosition.x + 10,
+      top: touchPosition.y + 10,
+      width: '40px',
+      height: '40px',
+      pointerEvents: 'none',
+      zIndex: 9999,
+      transform: 'translate(-50%, -50%)',
+    }}
+  />
+)}
+{trail.map(({ x, y, id }) => (
+  <SparkleTrail key={id} x={x} y={y} />
+))}
+
+
     </div>
   );
 };

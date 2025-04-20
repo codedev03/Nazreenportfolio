@@ -72,11 +72,27 @@
   color: #000;
 }
 
+.container {
+  display: flex;
+  flex-direction: row; /* Default: side by side */
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  z-index: 1;
+}
+
 @media screen and (max-width: 768px) {
-  .hero-section .container {
-      flex-direction: column;
-      gap: 2rem;
-      text-align: center;
+  .container {
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center items */
+    text-align: center; /* Optional: center text */
+  }
+
+  .avatar-container {
+    margin-top: 2rem;
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -92,6 +108,15 @@
   50% {
       border-color: #00ffff;
   }
+}
+
+.avatar-container {
+  flex: 1; /* Allow it to grow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease; /* Smooth transition for scaling */
 }
 
 /* Avatar Hover Effect */

@@ -44,12 +44,12 @@ function App() {
         <div className="main-content">
           <ErrorBoundary>
             <Home />
+            <Qualification />
           </ErrorBoundary>
           <Services />
           <About />
           <Contact />
           <Skills />
-          <Qualification />
           <Experience />
         </div>
       </>

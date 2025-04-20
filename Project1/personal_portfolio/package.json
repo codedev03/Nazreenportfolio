@@ -26,7 +26,7 @@
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-parallax-tilt": "^1.7.290",
+    "react-parallax-tilt": "^1.7.291",
     "react-scroll": "^1.9.2",
     "three": "^0.175.0"
   },
@@ -39,8 +39,8 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
+    "gh-pages": "^6.3.0",
     "globals": "^15.14.0",
-    "vite": "^6.1.0",
-    "gh-pages": "^6.3.0"
+    "vite": "^6.1.0"
   }
 }

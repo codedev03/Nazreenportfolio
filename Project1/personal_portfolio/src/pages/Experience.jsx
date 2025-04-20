@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Tilt from 'react-parallax-tilt';
 import '../assets/css/Experience.css';
 
 const experiences = [
@@ -43,41 +44,66 @@ function Experience() {
   };
 
   useEffect(() => {
+    const createStars = () => {
+      const newStars = Array.from({ length: 10 }).map((_, index) => ({
+        id: index,
+        left: Math.random() * 100 + 'vw',
+        top: Math.random() * 100 + 'vh',
+        opacity: Math.random(),
+        size: Math.random() * 5 + 5 + 'px',
+      }));
+      setStars(newStars);
+    };
+  
+    const handleMouseMove = () => createStars();
+    const handleTouchMove = () => createStars();
+  
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target); // Stop observing after it becomes visible
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.8 } // Trigger when 80% of the section is visible
+      { threshold: 0.8 }
     );
-
+  
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
+  
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove);
+  
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current); // Clean up observer
+        observer.unobserve(sectionRef.current);
       }
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
+  
 
   return (
     <section className="experience-container" id="Experience" ref={sectionRef}>
       <h1 className="section-title">Professional Experience</h1>
       <div className="experience-cards">
-        {experiences.map((exp, index) => (
+      {experiences.map((exp, index) => (
+        <Tilt
+          glareEnable={true}
+          glareMaxOpacity={0.3}
+          scale={1.05}
+          transitionSpeed={1000}
+          tiltMaxAngleX={15}
+          tiltMaxAngleY={15}
+          key={index}
+        >
           <motion.div
             className="experience-card"
-            key={index}
-            initial={{ opacity: 0, y: 50 }} // Initial state
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} // Animate when visible
-            transition={{ duration: 0.6, delay: index * 0.2 }} // Transition settings
-            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(128, 0, 255, 0.5)" }} // Hover effect
+            initial={{ opacity: 0, y: 50 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
           >
             <div className="experience-header">
               <h2 className="experience-title">{exp.title}</h2>
@@ -86,7 +112,9 @@ function Experience() {
             <h3 className="experience-company">{exp.company}</h3>
             <p className="experience-description">{exp.description}</p>
           </motion.div>
-        ))}
+        </Tilt>
+      ))}
+
       </div>
       {stars.map(star => (
         <div

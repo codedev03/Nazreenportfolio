@@ -131,3 +131,30 @@
     transform: translate(0, 0); /* Return to original position */
   }
 }
+
+@media (max-width: 768px) {
+  .skills-cards {
+    flex-direction: column; /* Stack cards vertically */
+  }
+
+  .skills-card {
+    margin-right: 0; /* Remove side margin */
+    margin-bottom: 20px; /* Add space below */
+  }
+
+  .icons-card {
+    height: 200px; /* Reduce height for mobile view */
+    min-height: auto;
+    padding: 10px;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .icons-container {
+    justify-content: center; /* Center icons horizontally */
+    gap: 10px;
+  }
+
+  .skill-icon {
+    font-size: 28px; /* Slightly smaller icons */
+  }
+}
