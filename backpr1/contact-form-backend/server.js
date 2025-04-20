@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-    origin: "https://frontendportfolio-nk4h.onrender.com/", // Replace with actual deployed frontend URL
+    origin: "https://frontendportfolio-nk4h.onrender.com", // Replace with actual deployed frontend URL
     methods: ["POST", "GET"],
     credentials: true
   }));
